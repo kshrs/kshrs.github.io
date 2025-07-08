@@ -37,7 +37,7 @@ p {
 
 
 .name {
-	font-size: 30px;
+	font-size: 34px;
 	font-weight: 500;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -51,8 +51,8 @@ p {
 	font-family: "Roboto Mono", sans-serif, "Montserrat";
 }
 
-.links {
-	line-height: 5px;
+.links h3 {
+	font-size: 20px;
 }
 
 .About h5 {
@@ -62,7 +62,7 @@ p {
 
 h3 {
 	font-family: "Roboto Mono", sans-serif, "Montserrat";
-	font-size: 20px;
+	font-size: 24px;
 }
 
 .Education p {

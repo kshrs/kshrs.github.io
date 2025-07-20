@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>Blogs as it's supposed to be...</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital@0;1&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="./style.css">
+
+		<meta charset="UTF-8">
+		<meta name="description" content="Blogs of Kishor">
+		<meta name="keywords" content="Kishor, Blogs">
+		<meta name="author" content="Kishor">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<div class=container>
+			<div class="page_title" style="text-align: center">Blogs as it's supposed to be...</div>
+			<div class="links">
+				<hr>
+				<h3>
+					<a href="../index.html">Home</a> /
+					<a href="../projects.html">Projects</a> /
+					<a href="./blogs.html">Blogs</a> /
+					<a href="../achievements.html">Certs and Achievements</a>
+				</h3>
+				<hr>
+			</div>
+	<h1 style="text-align: center">List of Recent Blogs</h1>
+  <ul id="blog-list"></ul>
+
+  <script>
+	  // Blog file list — manually maintained
+	  const blogFiles = [
+		  "Why-LinkedIn-Is-Fucked-Up.html"
+	  ];
+
+	  // Render list
+	  const ul = document.getElementById("blog-list");
+	  blogFiles.forEach(blog => {
+		  fname = blog,
+		  title = blog.replace("-"," ").replace(".html","")
+
+		  const li = document.createElement("li");
+		  const a = document.createElement("a");
+		  a.href = fname;
+		  a.textContent = title;
+		  li.appendChild(a);
+		  ul.appendChild(li);
+	  });
+  </script>
+		</div>
+	</body>
+</html>

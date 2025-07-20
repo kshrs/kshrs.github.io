@@ -51,6 +51,9 @@ p {
 	padding-bottom: 0px;
 	margin-bottom: 0px;
 }
+h2 {
+	font-family: "Montserrat", sans-serif, "Roboto Mono";
+}
 
 h3 {
 	font-family: "Roboto Mono", sans-serif, "Montserrat";

@@ -69,3 +69,9 @@ li {
 	font-family: "Montserrat", sans-serif, "Roboto Mono";
 	font-size: 18px;
 }
+
+.code pre {
+	text-align: left;
+	font-family: "Roboto Mono", "Montserrat", sans-serif;
+	font-size: 15px;
+}

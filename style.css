@@ -139,3 +139,26 @@ Time Line representation:
 .skills {
     margin-top: 10px; 
 }
+
+.footer {
+    margin-top: auto;
+}
+
+.list ul {
+    font-size: 18px;
+    line-height: 1;
+    padding: 0 auto;
+}
+
+.blog-content {
+    font-size: 18px;
+}
+
+.nav {
+    display: flex;
+    gap: 10px;
+}
+
+.list p {
+    line-height: 1.4;
+}

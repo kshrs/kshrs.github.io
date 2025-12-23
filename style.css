@@ -31,6 +31,13 @@ p {
     font-size: 17px;
 }
 
+a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+a:hover { text-decoration: underline; }
+
 .container {
     max-width: 800px;
     margin: 0 auto;

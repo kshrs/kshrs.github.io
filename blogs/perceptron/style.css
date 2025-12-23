@@ -1,0 +1,166 @@
+:root {
+  --bg-color: #f3f2ee;
+  --text-color: #1f0909;
+  --link-color: #065588;
+  --code-bg: #dadada;
+  --border-color: #333333;
+}
+
+/* Custom Text Selection Color */
+::selection {
+    background: rgba(32, 43, 51, 0.63); /* The dark grey-blue theme color */
+    color: white;
+}
+
+/* Firefox compatibility */
+::-moz-selection {
+    background: rgba(32, 43, 51, 0.63);
+    color: white;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: "PT Serif", "Times New Roman", Times, serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.5em;
+  margin: 0 auto;
+  padding: 2rem;
+  max-width: 914px; /* Matches large screen layout from original */
+}
+
+/* nav bar */
+.nav {
+    display: flex;
+    gap: 10px;
+    margin: 0 0;
+}
+
+/* 2. Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: var(--text-color);
+  margin-top: 2em;
+  margin-bottom: 1em;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 1.8em;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5em;
+  margin-bottom: 1.5em;
+  font-weight: normal; /* Specific theme override */
+}
+
+h2 { font-size: 1.3125em; line-height: 1.15em; }
+h3 { font-size: 1.3125em; font-weight: normal; }
+h4 { font-size: 1.125em; }
+
+p { margin-top: 1.5em; margin-bottom: 1.5em; }
+
+a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+a:hover { text-decoration: underline; }
+
+/* 3. Lists */
+ul {
+    position: relative;
+}
+ul, ol {
+  margin: 0 0 1.5em 1.5em;
+}
+
+li p {
+    margin: 0.5em 0;
+}
+
+ul li { list-style-type: disc; }
+ol li { list-style-type: decimal; }
+
+/* 4. Blockquotes */
+blockquote {
+  font-style: italic;
+  border-left: 5px solid #bababa;
+  margin: 1.5em 0 1.5em 2em;
+  padding-left: 1em;
+  color: #656565;
+}
+
+/* 5. Code & Preformatting */
+code, pre {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  background-color: var(--code-bg);
+  font-size: 0.9em;
+}
+
+code {
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+pre {
+  display: block;
+  padding: 1em;
+  overflow-x: auto;
+  margin-bottom: 1.5em;
+  line-height: 1.4;
+}
+
+/* 6. Tables */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 1.5em;
+  font-size: 1em;
+}
+
+th, td {
+  padding: 0.5em;
+  border: 1px solid transparent; /* Keeps spacing consistent */
+  vertical-align: top;
+  text-align: left;
+}
+
+thead {
+  background-color: #dadada;
+}
+
+thead th {
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+/* Zebra striping */
+tr:nth-child(even) {
+  background-color: #e8e7e7;
+}
+
+/* 7. Misc Elements */
+hr {
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  margin: 2em 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* MathJax centering adjustment */
+.MathJax_Display, .md-math-block {
+  text-align: center;
+  margin: 1em 0;
+  overflow-x: auto;
+}
+

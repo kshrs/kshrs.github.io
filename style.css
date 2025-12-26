@@ -74,6 +74,11 @@ h3 {
     margin: 0;
 }
 
+.ruler {
+    display: flex;
+    width: 100%;
+    border-bottom: 2px solid var(--border-color);
+}
 .container {
     max-width: 914px;
     margin: 0 auto;
@@ -147,6 +152,10 @@ h3 {
 
 .experience {
     margin-top: 10px; 
+}
+
+.skills {
+    margin-top: 10px;
 }
 
 

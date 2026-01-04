@@ -1,8 +1,8 @@
 :root {
-  --bg-color: #0d0d0d;
-  --text-color: #c0baa5;
-  --border-color: #c0baa5;
-  --highlight-color: #c0baa5;
+    --bg-color: #f3f2ee;
+    --text-color: #1a1a1a;
+    --border-color: #1a1a1a;
+    --highlight-color: #333333;
 }
 
 /*
@@ -37,7 +37,7 @@
 body {
     background: var(--bg-color); 
     color: var(--text-color);
-	font-family: "Montserrat", sans-serif;
+	font-family: "PT Serif", sans-serif;
     padding: 20px;
     line-height: 1.4;
 }
@@ -49,6 +49,7 @@ p {
 a {
     text-decoration: wavy underline;
     color: var(--border-color);
+	font-family: "Montserrat", sans-serif;
 }
 
 
@@ -150,42 +151,28 @@ h3 {
     margin-top: 10px; 
 }
 
-.experience {
-    margin-top: 10px; 
-}
-
 .skills {
     margin-top: 10px;
 }
 
-
-.skills ul {
+.grid {
     display: flex;
-    list-style-type: none;
-    flex-wrap: wrap;
-    padding-left: 0;
+    flex-direction: column;
+    padding: 10px 1;
+    gap: 10px;
 }
 
-.skills ul li {
-    padding-right: 10px;
-}
-
-.dot {
+.grid .row {
     display: flex;
-    align-items: center;
-
-    color: var(--text-color);
-
-    margin: 0 8px;
-    font-size: 1.5rem;
-
-    user-select: none;
+    gap: 30px;
 }
+
 
 .footer {
     margin-top: auto;
 }
 
+/* Style for blogs page */
 .box {
     display: flex;
     flex-direction: column;

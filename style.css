@@ -1,7 +1,7 @@
 /* ============================================================
    FONTS
    Iosevka Etoile  → body / headings  (self-hosted)
-   IBM Plex Mono   → nav / UI / code  (Google Fonts)
+   IBM Plex Mono   → nav / UI / code  (self-hosted)
    ============================================================ */
 
 @font-face {
@@ -26,6 +26,27 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family:  'IBM Plex Mono ';
+    src:          url('./fonts/IBMPlexMono-Regular.woff2') format('woff2');
+    font-weight:  400;
+    font-style:   normal;
+    font-display: swap;
+}
+@font-face {
+    font-family:  'IBM Plex Mono';
+    src:          url('./fonts/IBMPlexMono-Italic.woff2') format('woff2');
+    font-weight:  400;
+    font-style:   italic;
+    font-display: swap;
+}
+@font-face {
+    font-family:  'IBM Plex Mono';
+    src:          url('./fonts/IBMPlexMono-Bold.woff2.woff2') format('woff2');
+    font-weight:  700;
+    font-style:   normal;
+    font-display: swap;
+}
 
 /* ============================================================
    THEME TOKENS

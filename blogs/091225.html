@@ -11,12 +11,14 @@
 		<meta name="description" content="Kishor's Blog">
 		<meta name="author" content="Kishor">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/moon.png">
 	</head>
 	<body>
         <div class="container">
             <div class="nav-top">
                 <a href="../index.html">home</a>
                 <a href="./index.html">blogs</a>
+                <button id="theme-toggle" aria-label="Toggle theme">◐</button>
             </div>
             <header style="margin-top: 10px;">
             <h1>The start of a new habit - blogging</h1>
@@ -53,5 +55,25 @@
                 <h3>Last updated: 17-12-2025</h3>
             </footer>
         </div>
+
+    <script>
+        const THEME_KEY  = 'theme';
+        const LIGHT      = 'light';
+        const DARK       = 'dark';
+
+        const root   = document.documentElement;
+        const toggle = document.getElementById('theme-toggle');
+
+        // Restore saved theme on load, fall back to light
+        const saved = localStorage.getItem(THEME_KEY) ?? LIGHT;
+        root.setAttribute('data-theme', saved);
+
+        toggle.addEventListener('click', () => {
+            const current = root.getAttribute('data-theme');
+            const next    = current === LIGHT ? DARK : LIGHT;
+            root.setAttribute('data-theme', next);
+            localStorage.setItem(THEME_KEY, next);
+        });
+    </script>
     </body>
 </html>

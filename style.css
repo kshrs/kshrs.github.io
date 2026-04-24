@@ -1,193 +1,358 @@
-:root {
-    --bg-color: #f3f2ee;
-    --text-color: #1a1a1a;
-    --border-color: #1a1a1a;
-    --highlight-color: #333333;
+/* ============================================================
+   FONTS
+   Iosevka Etoile  → body / headings  (self-hosted)
+   IBM Plex Mono   → nav / UI / code  (Google Fonts)
+   ============================================================ */
+
+@font-face {
+    font-family:  'Iosevka Etoile';
+    src:          url('./fonts/IosevkaEtoile-Regular.woff2') format('woff2');
+    font-weight:  400;
+    font-style:   normal;
+    font-display: swap;
+}
+@font-face {
+    font-family:  'Iosevka Etoile';
+    src:          url('./fonts/IosevkaEtoile-Italic.woff2') format('woff2');
+    font-weight:  400;
+    font-style:   italic;
+    font-display: swap;
+}
+@font-face {
+    font-family:  'Iosevka Etoile';
+    src:          url('./fonts/IosevkaEtoile-Bold.woff2') format('woff2');
+    font-weight:  700;
+    font-style:   normal;
+    font-display: swap;
 }
 
-/*
-@media (prefers-color-scheme: light) {
-    :root {
-      --bg-color: #f3f2ee;
-      --text-color: #1a1a1a;
-      --border-color: #1a1a1a;
-      --highlight-color: #333333;
-    }
+
+/* ============================================================
+   THEME TOKENS
+   Toggle via JS:
+     document.documentElement.setAttribute('data-theme', 'dark')
+     document.documentElement.setAttribute('data-theme', 'light')
+   ============================================================ */
+
+:root,
+[data-theme="light"] {
+    --bg-color:        #f3f2ee;
+    --text-color:      #1a1a1a;
+    --border-color:    #1a1a1a;
+    --highlight-color: #333333;
+    --muted-color:     #666666;
+
+    --font-body: 'Iosevka Etoile', 'Georgia', serif;
+    --font-ui:   'IBM Plex Mono', 'Courier New', monospace;
 }
-@media (prefers-color-scheme: dark) {
-    :root {
-      --bg-color: #0d0d0d;
-      --text-color: #c0baa5;
-      --border-color: #c0baa5;
-      --highlight-color: #c0baa5;
-    }
+
+[data-theme="dark"] {
+    --bg-color:        #0d0d0d;
+    --text-color:      #c0baa5;
+    --border-color:    #c0baa5;
+    --highlight-color: #c0baa5;
+    --muted-color:     #7a7265;
 }
-*/
+
+
+/* ============================================================
+   GLOBAL RESET & BASE
+   ============================================================ */
 
 ::selection {
-    background: var(--highlight-color); 
-    color: var(--bg-color);
+    background: var(--highlight-color);
+    color:      var(--bg-color);
 }
 
 ::-moz-selection {
-    background: var(--highlight-color); 
-    color: var(--bg-color);
+    background: var(--highlight-color);
+    color:      var(--bg-color);
 }
 
 body {
-    background: var(--bg-color); 
-    color: var(--text-color);
-	font-family: "PT Serif", sans-serif;
-    padding: 20px;
-    line-height: 1.4;
+    background:  var(--bg-color);
+    color:       var(--text-color);
+    font-family: var(--font-body);
+    font-size:   17px;
+    line-height: 1.55;
+    padding:     20px;
 }
 
 p {
-    line-height: 1.3;
+    line-height: 1.45;
+    margin:      0 0 0.75em;
 }
 
 a {
-    text-decoration: wavy underline;
-    color: var(--border-color);
-	font-family: "Montserrat", sans-serif;
+    color:           var(--text-color);
+    font-family:     var(--font-ui);
+    font-size:       0.88em;
+    text-decoration: underline wavy;
+    transition:      opacity 0.15s ease;
+}
+
+a:hover {
+    opacity: 0.6;
 }
 
 
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
 h1 {
-    font-weight: 500;
-    font-style: normal;
-    font-size: 28px;
-    margin-top: 0;
-    margin-bottom: 4px;
+    font-family:    var(--font-body);
+    font-size:      26px;
+    font-style:     normal;
+    font-weight:    400;
+    letter-spacing: -0.01em;
+    margin-bottom:  4px;
+    margin-top:     0;
 }
 
 h2 {
-    font-weight: normal;
-    font-style: italic;
-    font-size: 18px;
-    margin-top: 0;
-    margin-bottom: 16px;
+    font-family:   var(--font-body);
+    font-size:     17px;
+    font-style:    italic;
+    font-weight:   400;
+    /* margin-bottom: 16px; */
+    /* margin-top:    0px; */
 }
 
 h3 {
-    font-style: bold;
-    font-size: 16px;
-    margin: 0;
+    font-family: var(--font-ui);
+    font-size:   14px;
+    font-weight: 500;
+    margin:      0;
+}
+
+h4 {
+    font-family: var(--font-ui);
+    font-size:   13px;
+    font-weight: 400;
+    margin:      0.5em 0 0.25em;
+}
+
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+
+.container {
+    margin:    0 auto;
+    max-width: 914px;
 }
 
 .ruler {
-    display: flex;
-    width: 100%;
-    border-bottom: 2px solid var(--border-color);
-}
-.container {
-    max-width: 914px;
-    margin: 0 auto;
+    border:        none;
+    border-bottom: 1px solid var(--border-color);
+    display:       block;
+    margin:        0 0 24px 0;
+    width:         100%;
 }
 
+
+/* ============================================================
+   NAV
+   ============================================================ */
+
 .nav-top {
-    user-select: none;
-    display: flex;
-    gap: 20px;
-    font-size: 20px;
-    font-weight: 500;
+    align-items:     center;
+    border-bottom:   1px solid var(--border-color);
+    display:         flex;
+    gap:             24px;
     justify-content: center;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--border-color);
-    line-height: 1.65;
+    padding-bottom:  16px;
+    user-select:     none;
 }
 
 .nav-top a {
+    border-bottom:   2px solid transparent;
+    color:           var(--text-color);
+    font-family:     var(--font-ui);
+    font-size:       14px;
+    font-weight:     500;
+    letter-spacing:  0.05em;
     text-decoration: none;
-    color: var(--text-color);
-    border-bottom: 3px solid var(--bg-color);
+    text-transform:  lowercase;
+    transition:      border-color 0.15s ease;
 }
 
 .nav-top a:hover {
-    text-decoration: none;
-    border-bottom: 3px solid var(--border-color);
+    border-bottom-color: var(--border-color);
+    opacity:             1;
+}
+
+#theme-toggle {
+    background:  none;
+    border:      none;
+    color:       var(--text-color);
+    cursor:      pointer;
+    font-family: var(--font-ui);
+    font-size:   16px;
+    line-height: 1;
+    margin-left: auto;
+    padding:     0;
+    transition:  opacity 0.15s ease;
+}
+
+#theme-toggle:hover {
+    opacity: 0.5;
 }
 
 @media (max-width: 600px) {
     .nav-top {
         flex-direction: column;
-        gap: 5px;
+        gap:            8px;
     }
 
+    #theme-toggle {
+        margin-left: 0;
+    }
+}
+
+
+/* ============================================================
+   HEADER / INFO BLOCK
+   ============================================================ */
+
+.info {
+    padding: 20px 0 8px;
 }
 
 .heading {
-    display: flex;
-    gap: 20px;
+    align-items: center;
+    display:     flex;
+    gap:         16px;
 }
 
+/* The _> kshrs name uses UI font — keeps the terminal-prompt feel */
 .heading h1 {
-    padding-top: 10px;
+    font-family:    var(--font-ui);
+    font-size:      20px;
+    font-weight:    400;
+    letter-spacing: 0.02em;
+    padding-top:    0;
+    margin:         0;
 }
 
+.heading img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
 
-.info-socials {
-    margin: 0;
 }
+
 .info-socials ul {
-    display: flex;
-    flex-wrap: wrap;
+    display:         flex;
+    flex-wrap:       wrap;
+    gap:             12px;
     list-style-type: none;
-    gap: 10px;
-    padding: 0;
+    padding:         0;
+    margin:          0;
 }
+
 .info-socials ul a {
-    color: var(--text-color);
+    border-bottom:   1px solid var(--border-color);
+    color:           var(--text-color);
+    display:         inline-block;
+    font-size:       inherit;
+    line-height:     1;
+    opacity:         1;
+    padding-bottom:  3px;
     text-decoration: none;
-    border-bottom: 2px solid var(--border-color);
+    transition:      border-bottom-width 0.1s ease, opacity 0.1s ease;
 }
 
 .info-socials ul a:hover {
-    border-bottom: 3px solid var(--border-color);
-    transition: border-bottom;
+    border-bottom-width: 2px;
+    opacity:             0.6;
 }
+
+/* ============================================================
+   BIO SECTION
+   ============================================================ */
 
 .bio {
-    margin-top: 10px; 
+    margin-top: 4px;
 }
 
-.skills {
-    margin-top: 10px;
+.bio ul {
+    padding-left: 1.25em;
 }
+
+.bio ul li {
+    margin-bottom: 0.35em;
+}
+
+
+/* ============================================================
+   SKILLS GRID
+   ============================================================ */
 
 .grid {
-    display: flex;
+    display:        flex;
     flex-direction: column;
-    padding: 10px 1;
-    gap: 10px;
+    gap:            8px;
+    padding:        4px 0 12px;
+}
+
+.grid h1 {
+    margin-bottom: 8px;
 }
 
 .grid .row {
-    display: flex;
-    gap: 30px;
+    display:     flex;
+    font-family: var(--font-ui);
+    font-size:   14px;
+    gap:         24px;
 }
 
+.grid .col:first-child {
+    flex-shrink: 0;
+    min-width:   80px;
+    opacity:     0.55;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
 
 .footer {
-    margin-top: auto;
+    font-family: var(--font-ui);
+    font-size:   12px;
+    margin-top:  auto;
+    opacity:     0.45;
 }
 
-/* Style for blogs page */
+
+/* ============================================================
+   BLOG PAGE
+   ============================================================ */
+
 .box {
-    display: flex;
+    display:        flex;
     flex-direction: column;
+    margin-bottom:  16px;
 }
 
 .box .main {
-    display: flex;
+    display:        flex;
     flex-direction: row;
-    padding: 5px 5px;
+    gap:            12px;
+    padding:        4px 0;
 }
+
 .box .main .title {
-    font-weight: 500;
-    font-size: 18px;
+    font-family: var(--font-body);
+    font-size:   17px;
+    font-weight: 400;
 }
 
 .box .desc {
-    padding: 5px 5px;
+    color:       var(--muted-color);
+    font-family: var(--font-ui);
+    font-size:   13px;
+    padding:     2px 0;
 }

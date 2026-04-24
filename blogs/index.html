@@ -1,56 +1,91 @@
-<html>
-	<head>
-		<title>kshrs | Blogs</title>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kishor's Blog">
+    <meta name="author" content="Kishor">
 
-		<link rel="stylesheet" href="../style.css">
+    <title>blogs | kshrs</title>
 
-		<meta charset="UTF-8">
-		<meta name="description" content="Kishor's Blog">
-		<meta name="author" content="Kishor">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	</head>
-	<body>
-        <div class="container">
-            <div class="nav-top">
-                <a href="../index.html">home</a>
-                <a href="./index.html">_> blogs</a>
-            </div>
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/moon.png">
 
-            <header style="margin-top: 10px;">
-                <h1>blogs</h1>
-            </header>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 
-            <div class="list">
-                <div class="box">
-                    <div class="main">
-                        <div class="title">
-                            <span>•</span>
-                            <span><a href="./perceptron/index.html">The breakdown on "The Perceptron"</a></span>
-                        </div>
-                    </div>
-                    <div class="desc">
-                        <span style="padding-left: 10px;">+ Personal work on understanding <em>the perceptron</em> from the original research paper by F. Rosenblatt from 1958.</span>
-                    </div>
-                </div>
-                <br>
-                <div class="box">
-                    <div class="main">
-                        <div class="title">
-                            <span>•</span>
-                            <span><a href="./091225.html">The start of a new habit - blogging</a></span>
-                        </div>
-                    </div>
-                    <div class="desc">
-                        <span style="padding-left: 10px;">+ I never thought I will be doing this. Let us see how it goes, <em>time</em> is the answer.</span>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- NAV -->
+        <nav class="nav-top">
+            <a href="../index.html">home</a>
+            <a href="./index.html">_> blogs</a>
+            <button id="theme-toggle" aria-label="Toggle theme">◐</button>
+        </nav>
+
+        <!-- HEADER -->
+        <header>
+            <h1>blogs</h1>
+        </header>
+
+        <!-- BLOG LIST -->
+        <div class="list">
+
+            <div class="box">
+                <div class="main">
+                    <div class="title">
+                        <span>•</span>
+                        <a href="./perceptron/index.html">The breakdown on "The Perceptron"</a>
                     </div>
                 </div>
+                <div class="desc">
+                    Personal work on understanding <em>the perceptron</em> from the original
+                    research paper by F. Rosenblatt from 1958.
+                </div>
             </div>
 
-            <span class="ruler" style="margin-top: 10px;"></span>
+            <div class="box">
+                <div class="main">
+                    <div class="title">
+                        <span>•</span>
+                        <a href="./091225.html">The start of a new habit - blogging</a>
+                    </div>
+                </div>
+                <div class="desc">
+                    I never thought I will be doing this. Let us see how it goes,
+                    <em>time</em> is the answer.
+                </div>
+            </div>
+
         </div>
-    </body>
+
+        <span class="ruler"></span>
+
+    </div>
+
+    <script>
+        const THEME_KEY = 'theme';
+        const LIGHT     = 'light';
+        const DARK      = 'dark';
+
+        const root   = document.documentElement;
+        const toggle = document.getElementById('theme-toggle');
+
+        const saved = localStorage.getItem(THEME_KEY) ?? LIGHT;
+        root.setAttribute('data-theme', saved);
+
+        toggle.addEventListener('click', () => {
+            const current = root.getAttribute('data-theme');
+            const next    = current === LIGHT ? DARK : LIGHT;
+            root.setAttribute('data-theme', next);
+            localStorage.setItem(THEME_KEY, next);
+        });
+    </script>
+
+</body>
 </html>

@@ -27,7 +27,7 @@
 }
 
 @font-face {
-    font-family:  'IBM Plex Mono ';
+    font-family:  'IBM Plex Mono';
     src:          url('./fonts/IBMPlexMono-Regular.woff2') format('woff2');
     font-weight:  400;
     font-style:   normal;
@@ -90,12 +90,13 @@
     color:      var(--bg-color);
 }
 
+
 body {
     background:  var(--bg-color);
     color:       var(--text-color);
     font-family: var(--font-body);
-    font-size:   17px;
-    line-height: 1.55;
+    font-size:   15px;
+    line-height: 1.5;
     padding:     20px;
 }
 
@@ -123,7 +124,7 @@ a:hover {
 
 h1 {
     font-family:    var(--font-body);
-    font-size:      26px;
+    font-size:      20px;
     font-style:     normal;
     font-weight:    400;
     letter-spacing: -0.01em;
@@ -133,7 +134,7 @@ h1 {
 
 h2 {
     font-family:   var(--font-body);
-    font-size:     17px;
+    font-size:     14px;
     font-style:    italic;
     font-weight:   400;
     /* margin-bottom: 16px; */
@@ -250,7 +251,7 @@ h4 {
 /* The _> kshrs name uses UI font — keeps the terminal-prompt feel */
 .heading h1 {
     font-family:    var(--font-ui);
-    font-size:      20px;
+    font-size:      16px
     font-weight:    500;
     letter-spacing: 0.02em;
     padding-top:    0;
@@ -367,7 +368,7 @@ h4 {
 
 .box .main .title {
     font-family: var(--font-body);
-    font-size:   17px;
+    font-size:   15px;
     font-weight: 400;
 }
 
@@ -376,4 +377,41 @@ h4 {
     font-family: var(--font-ui);
     font-size:   13px;
     padding:     2px 0;
+}
+
+/* ============================================================
+   PROJECTS & PAPERS SECTIONS
+   ============================================================ */
+
+.section-grid {
+    display:        flex;
+    flex-direction: column;
+    gap:            8px;
+    padding:        4px 0 12px;
+}
+
+.section-grid h1 {
+    margin-bottom: 8px;
+}
+
+.section-row {
+    display:     flex;
+    font-family: var(--font-ui);
+    font-size:   14px;
+    gap:         24px;
+    align-items: baseline;
+}
+
+.section-name {
+    flex-shrink: 0;
+    min-width:   180px;
+}
+
+.section-name a {
+    text-decoration: underline;
+}
+
+.section-desc {
+    color:   var(--text-color);
+    opacity: 0.85;
 }

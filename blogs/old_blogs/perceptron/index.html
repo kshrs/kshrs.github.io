@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A breakdown of Rosenblatt's 1958 Perceptron paper – probabilistic model, connectionism, and early neural networks.">
+    <meta name="author" content="Kishor">
+    <title>kshrs · The Perceptron breakdown</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/moon.png">
+    <link rel="stylesheet" href="../../blogs.css">
+    <link rel="stylesheet" href="../../pygments.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-top">
+            <a href="../../../index.html">~/home</a>
+            <a href="../../index.html" class="active">~/blogs</a>
+            <a href="../../../assets/Kishor_S_Resume_General.pdf" target="_blank">~/resume.pdf</a>
+        </nav>
+
+        <div class="blog-post">
+            <h1>The breakdown on "The Perceptron"</h1>
+            <div class="post-meta">2025-12-23</div>
+
+	    <blockquote><h4>Information to the readers:</h4>
+            <p>This article is a "broken down" version of the F. Rosenblatt's 1958 research paper on <em>"The Perceptron: A Probabilistic Model For Information Storage And Organization In The Brain - 1958 (Cornell Aeronautical Laboratory)"</em>. It utilizes terminologies from the original research paper and provide additional examples for clearer understanding. This article stands as a complementary read to the original research paper and not as a standalone article of its own for the complete understanding of "The Perceptron".<br>
+	    <b>~happy reading~</b></p></blockquote>
+
+	    <div class="ruler"></div>
+
+            <h2>What is a Perceptron?</h2>
+            <ul>
+                <li><em>Perceptron</em> is considered as the earliest form of neural network that provided the basis for the neuron/neural network we use today.</li>
+                <li>It is a <em>state machine</em> which use <em>statistical separability</em> to learn patterns and organize information in the network of connections to distinguish between patterns like square or circle.</li>
+                <li>The term <em>Perceptron</em> is coined by F. Rosenblatt in his research paper <strong>"The Perceptron: A Probabilistic Model For Information Storage And Organization In The Brain - 1958 (Cornell Aeronautical Laboratory)"</strong> and provided the complete information of how the machine works along with analysis of it's performance.</li>
+                <li>F. Rosenblatt argued that the symbolic logic and wiring diagrams don't represent the behavior of the neuron in the brain (aka biological intelligence) and hence he proposed a <em>Probabilistic approach</em> (vs Deterministic approach) to tackle down the limitations of the other theory developed around that time.</li>
+            </ul>
+
+            <h2>The three fundamental questions...</h2>
+            <p>F. Rosenblatt states that,</p>
+            <blockquote><p>"to understand the capability of higher organisms for perceptual recognition, generalization, recall and thinking, we must first have answer to three fundamental question:"</p></blockquote>
+            <ul>
+                <li>How does the physical information is sensed or detected by the biological system?</li>
+                <li>In what form the information is stored, or remembered?</li>
+                <li>How does the information contained in storage, or in memory, influence recognition and behavior?</li>
+            </ul>
+            <p>He clearly outlines the first question stating that,</p>
+            <blockquote><p>"The first of these questions is in the province of sensory physiology, and is the only one for which appreciable understanding has been achieved. This article will be concerned primarily with the second and third questions,"</p></blockquote>
+            <p>and so, this article too consider only the second and third question.</p>
+
+            <h2>Q2: How is the information sensed or detected?</h2>
+            <p>There are two hypothesis to understand the storage of information in any biological organism (around the 1950s),</p>
+            <h3>Coded Representation:</h3>
+            <ul>
+                <li><p>This idea suggests that information is stored in <em>coded form</em> in memory with some sort of one-to-one relationship to the appropriate response.</p></li>
+                <li><p>This also suggests that if one can find code (wiring of information) then one can also reconstruct the memory just like developing a photographic negative.</p></li>
+                <li><p>This idea was easy to understand and implement using boolean or symbolic logic, because of which many theories of brain models at that time was built around this idea.</p></li>
+                <li><p>[Example: (1 26 7 8) -&gt; square (but) (1 27 7 8) -&gt; not square (may be circle?)]</p>
+                <p><img src="./assets/code_representation_example.png" alt="Code Representation Example"></p></li>
+            </ul>
+
+            <h3>Connectionist Representation:</h3>
+            <ul>
+                <li><p>This idea stems from the British Empiricism idea of memory and knowledge. Check it out it's cool.</p></li>
+                <li><p>According to this hypothesis the images/code of the stimuli is never recorded at all, rather the information is contained in the new connections or pathways in the central nervous system (CNS) which is activated by the stimuli.</p></li>
+                <li><p>This means there is no simple mapping between a stimuli and a response. But the pathway represent/trigger the appropriate response given the stimuli activate the specific nerve cells/neuron.</p>
+                <p><img src="./assets/connectionist_representation_example.png" alt="Connectionist Representation Example"></p></li>
+            </ul>
+
+            <h2>Q3: How is the information stored influence future recognition and behavior?</h2>
+            <p>Based on the two types of information storage representation, there exist two hypothesis to define the influence of the stored information.</p>
+            <h3>Based on coded information approach:</h3>
+            <ul>
+                <li><p>Information is stored in coded representation with a one-to-one map of sorts between a specific stimuli to a response.</p></li>
+                <li><p>This suggests that recognition of any stimuli leads to the approach of systematic comparisons between the stored stimuli-response pair to find the appropriate response.</p></li>
+                <li><p>It is like performing linear search in the brain cells and doesn't support the facts of biological recognition as we humans recognize patterns and images in an instant.</p>
+                <p><img src="./assets/q3_code.png" alt="Code Representation Example"></p></li>
+            </ul>
+
+            <h3>Based on the empiricist/connectionist approach:</h3>
+            <ul>
+                <li><p>This idea stems from the answer of the second question, where stimuli information is stored in the new connections or pathways and any new stimuli will make use of this new connection or pathways to trigger appropriate response while making the connection stronger.</p></li>
+                <li><p>This leads to the triggering of similar neural pathways for similar stimuli leading to the same responses. (different input squares of different sizes always results in the same response "square")</p>
+                <p><img src="./assets/q3_connectionist.png" alt="Connectionist Representation Example"></p></li>
+            </ul>
+
+            <h2>Okay with these hypothesis, Let us get to the perceptron. Right?</h2>
+            <p>Here, the author takes the <em>empiricist or connectionist approach</em> to formulate/develop a theory for a hypothetical nervous system, <em>the perceptron</em>.</p>
+            <p>*(The term <em>response</em> can be defined as a <em>resultant state which is distinguishable from the other responses</em>. Like, two responses cannot state a given pattern is a square since we humans do not.)</p>
+            <p>At the time of formulating this theory, the symbolic logic and boolean algebra doesn't help/improve the development of the hypothetical nervous system for which the author believed <em>the probabilistic approach</em> holds the answer.</p>
+            <p>F. Rosenblatt was interested in the work of Hebb, a researcher whose work stood as suggestions for developing <em>the perceptron</em>. The main assumptions of Hebb's work are as follows,</p>
+            <ul>
+                <li>The physical connections of the nervous system which are involved for learning and recognition are not identical from one organism to another.</li>
+                <li>The original system of connected cells have only certain amount of plasticity. (plasticity refers to the strength of connections)</li>
+                <li>Exposure to a large sample of the same stimuli will tend to form pathways to the same set of responding cells and stimuli which are dissimilar will form pathways on a different set of cells.</li>
+                <li>The application of positive/negative reinforcement may lead to strengthening or weakening of the connections between the network of cells.</li>
+                <li>Similar stimuli will have the tendency to invoke the same sets of cells while also strengthening the connections between the cells and the responses.</li>
+            </ul>
+
+            <h2>Organization of the Perceptron:</h2>
+            <p><img src="./assets/perceptron_organization.svg" alt="Perceptron Organization"></p>
+            <p>The organization of perceptron by F. Rosenblatt has the following units:</p>
+            <ul>
+                <li><p><strong>S units</strong>: They act as the stimuli impinged on the retina (just like the intensity of light passing through our retina). In other words they are <em>simple input units</em>.</p></li>
+                <li><p><strong>A units</strong>: They are called <strong>association units (A)</strong> which are present in the <em>projection area</em> (<em>A<sub>I</sub></em>). The projection area may be ignored in some models.</p>
+                <ul>
+                    <li><p>A units may have any number of inputs from the S units and may transmit/output to any number of other A units.</p></li>
+                    <li><p>The A unit has a certain <strong>threshold (θ)</strong> above which the <em>A units fire on an all or nothing basis</em> (i.e, it either reaches the threshold and fire or don't)</p></li>
+                    <li><p>The set of S units connected to an A unit is called as <em>origin point</em> and they appear to be focalized to the A unit as we see in the nervous system (biologically).</p>
+                    <ul>
+                        <li>The connections in the origin point may be excitatory or inhibitory in their effect on the A unit.</li>
+                        <li>If the algebraic sum (+) of the excitatory and inhibitory (considered as a negative value) impulse greater than or equal to a given threshold (θ), then the A unit fires.</li>
+                        <li>Mathematically, <em>e - i ≥ θ</em></li>
+                    </ul>
+                    </li>
+                    <li><p>The connection between S units and A units are localized and unidirectional in nature (allows only forward pass of information).</p></li>
+                </ul>
+                </li>
+                <li><p>The A units from the <em>projection area</em> (<em>A<sub>I</sub></em>) is connected to another set of A units in the association area (<em>A<sub>II</sub></em>).</p>
+                <ul>
+                    <li>The connections between the A units of the projection area and association area is random in nature and are unidirectional.</li>
+                    <li>You may ask why random connections? the answer: as it leads to the reduction of initial bias towards a response for any given task.</li>
+                </ul>
+                </li>
+                <li><p><strong>R units</strong>: R units are the response units of a network, they can be n_number of response units and are considered mutually exclusive. i.e, occurrence of one response forbids the occurrence of others. In simple terms they are <em>the output units</em> with only one result.</p></li>
+                <li><p>Finally the A units from the association area (<em>A<sub>II</sub></em>) transmit to the Response units and the connections are random and bidirectional in nature.</p>
+                <ul>
+                    <li>The set of A units transmitting to a given response is called as the <em>source-set</em> of that response.</li>
+                    <li>The <em>bidirectional connections are for feedback</em> from the response to adjust the <em>weights/strength</em> of the connection/pathway to that response.</li>
+                </ul>
+                </li>
+            </ul>
+
+            <h2>Feedback connections:</h2>
+            <p><img src="./assets/feedback.svg" alt="Perceptron Feedback"></p>
+            <p>The feedback from the response can be either of the following:</p>
+            <ul>
+                <li><strong>Excitatory feedback</strong> to the cells of it's <em>own source set</em>.</li>
+                <li><strong>Inhibitory feedback</strong> to the cells of the <em>complement</em> of it's <em>own source set</em>.</li>
+            </ul>
+            <p>The first method seems easy and practical as it only needs to adjust the values of it's own source set.</p>
+            <p>But what does the feedback look like?</p>
+            <ul>
+                <li>Every A unit has a <em>value</em> (V) which the author terms as amplitude or frequency, but we can consider it as weight where it can be increased or decreased to mirror <em>reward and punishment framework</em>.</li>
+            </ul>
+
+            <h2>Three Models of Perceptron (The α, β and γ System)</h2>
+            <p>The three models of perceptron or any learning model in general are functionally the same but differ in the way they reward or punish every correct or wrong response respectively.</p>
+
+            <h3>α System: (The reward only system)</h3>
+            <ul>
+                <li>The <strong>alpha system</strong> rewards each <em>active A unit</em> in it's source set with a reward (ΔV) of +1 for <em>each correct response</em>, while not punishing the inactive A units in it's source set.</li>
+            </ul>
+
+            <h3>β System: (The constant feed system)</h3>
+            <ul>
+                <li><p>In the <strong>beta system</strong>, each source set is independently assigned a constant reward K (arbitrary value) to be split across active A units of the dominant source set and the inactive A units of the non-dominant source set. (K is to be split separately for each source set. <em>i.e, 2K of total reward for two class scenario like square or circle</em>)</p></li>
+                <li><p>If the dominant source set has no active A units, then the reward is split across the inactive A units of the same source set. Since, the value needs to be split up after each iteration even if there is no active A units.</p>
+                <ul>
+                    <li><strong>Example:</strong> Given a square stimuli, and the A units of the dominant source set are all inactive (i.e, they say it is not a square) then by the definition of beta system, the inactive A units will be rewarded equally even though the whole source set is wrong and vice versa for the other source sets.</li>
+                </ul>
+                </li>
+            </ul>
+
+            <h3>γ System: (The parasitic system)</h3>
+            <ul>
+                <li>The <strong>gamma system</strong> only deals with the dominant set unlike beta system. the inactive A units in the dominant source set are punished (ΔV &lt; 0) while the active A units are rewarded (ΔV &gt; 0, typically +1).</li>
+                <li>The active units gains the reward on the expense of the value diminished on the inactive A units in the source set. This is said to be <em>parasitic nature</em>.</li>
+            </ul>
+
+            <p><strong>Example:</strong></p>
+            <p><img src="./assets/deltaVexample.svg" alt="The three system example"></p>
+
+            <h3>Characteristics of α, β and γ system:</h3>
+            <p><img src="./assets/characteristics.png" alt="Characteristics of α, β and γ system"></p>
+
+            <h2>Phases of analysis:</h2>
+            <p>The perceptron can be analyzed on either of the two phases.</p>
+            <ul>
+                <li><strong>The Predominant phase:</strong> In this phase, some proportion of A units respond to the stimulus but all the response units are still inactive (consider it as, <em>in-computing stage</em> and the <em>results are not out</em> yet).</li>
+                <li><strong>The Postdominant phase:</strong> In this phase one of the response units are active and all others are inactive (consider it as, <em>computed</em> and the <em>results are out</em> phase).</li>
+            </ul>
+
+            <h2>Analysis of the Predominant phase:</h2>
+            <p>The perceptron considered here always have a <strong>fixed threshold</strong> (θ) for the activation of A units. In order to find the learning curve for a <em>fixed threshold perceptron</em>, two <em>variables</em> are found to be of primary importance.</p>
+            <ul>
+                <li><p><strong>The probability of activation <em>P<sub>a</sub></em></strong>: is the probability that a randomly selected A unit fires in the system fires.</p>
+                <ul>
+                    <li><p><em>P<sub>a</sub> = Σ<sub>e=θ</sub><sup>x</sup> Σ<sub>i=0</sub><sup>min(y, e-θ)</sup> P(e, i)</em>   (1)</p></li>
+                    <li><p>and <em>P(e, i) = C(x,e) R<sup>e</sup> (1-R)<sup>x-e</sup> · C(y,i) R<sup>i</sup> (1-R)<sup>y-i</sup></em></p></li>
+                    <li><p>Where,</p>
+                    <ul>
+                        <li>R = Proportion of the S-points activated by the stimulus</li>
+                        <li>x = Number of excitatory connection to each A-unit (fixed)</li>
+                        <li>y = Number of inhibitory connection to each A-unit (fixed)</li>
+                        <li>e = Number of active excitatory connection (vary by stimuli)</li>
+                        <li>i = Number of active inhibitory connection (vary by stimuli)</li>
+                        <li>θ = Threshold of A unit</li>
+                        <li><strong>condition:</strong> <em>(e - i ≥ θ)</em></li>
+                        <li><strong>Note:</strong> Neurons in our brain have fixed number of excitatory and inhibitory connection, for which the author tried to mimic it in here (i.e, the value of x and y).</li>
+                    </ul>
+                    </li>
+                </ul>
+                </li>
+                <li><p><strong>The conditional probability <em>P<sub>c</sub></em></strong>: is the conditional probability that given an A unit fired for stimuli <em>S<sub>1</sub></em> will also fire for stimuli <em>S<sub>2</sub></em> (i.e, A unit fire for both <em>S<sub>1</sub></em> and <em>S<sub>2</sub></em>).</p></li>
+                <li><p>High <em>P<sub>c</sub></em> is expected for intraclass stimuli and Low <em>P<sub>c</sub></em> is expected for interclass stimuli for better performance.</p>
+                <ul>
+                    <li><p><em>P<sub>c</sub> = (1/P<sub>a</sub>) Σ<sub>e=θ</sub><sup>x</sup> Σ<sub>i=e-θ</sub><sup>y</sup> Σ<sub>l<sub>e</sub>=0</sub><sup>e</sup> Σ<sub>l<sub>i</sub>=0</sub><sup>i</sup> Σ<sub>g<sub>e</sub>=0</sub><sup>x-e</sup> Σ<sub>g<sub>i</sub>=0</sub><sup>y-i</sup> P(e, i, l<sub>e</sub>, l<sub>i</sub>, g<sub>e</sub>, g<sub>i</sub>)</em>   (2)</p></li>
+                    <li><p>Where,</p>
+                    <ul>
+                        <li><em>l<sub>e</sub></em> = the number of "lost" excitatory connections (connections that were illuminated by <em>S<sub>1</sub></em> but are <strong>not</strong> illuminated by <em>S<sub>2</sub></em>).</li>
+                        <li><em>l<sub>i</sub></em> = the number of "lost" inhibitory connections (connections that were illuminated by <em>S<sub>1</sub></em> but are <strong>not</strong> illuminated by <em>S<sub>2</sub></em>).</li>
+                        <li><em>g<sub>e</sub></em> = the number of "gained" excitatory connections (connections that were <strong>not</strong> illuminated by <em>S<sub>1</sub></em> but <strong>are</strong> illuminated by <em>S<sub>2</sub></em>).</li>
+                        <li><em>g<sub>i</sub></em> = the number of "gained" inhibitory connections (connections that were <strong>not</strong> illuminated by <em>S<sub>1</sub></em> but <strong>are</strong> illuminated by <em>S<sub>2</sub></em>).</li>
+                        <li><strong>condition:</strong> <em>(e - i - l<sub>e</sub> + l<sub>i</sub> + g<sub>e</sub> - g<sub>i</sub> ≥ θ)</em></li>
+                    </ul>
+                    </li>
+                </ul>
+                </li>
+            </ul>
+            <p><strong>Note:</strong> There goes a lot of math in here and I know a lot is going on in your head right now. But here is an <strong>example</strong> to make you understand better.</p>
+            <p><img src="./assets/predominant_phase_example.svg" alt="Predominant Phase Example"></p>
+            <ul>
+                <li><em>As said earlier,</em> Neurons in our brain have fixed number of excitatory and inhibitory connection, for which the author tried to mimic it in here (i.e, the value of <strong>x</strong> and y).</li>
+                <li>Fixed <strong>x</strong> and <strong>y</strong> helps to <em>reduce bias</em> by not having difference in the number of connections between the S units and A units in the projection area. [like <em>A<sub>1</sub> = (10x, 5y)</em>  <em>A<sub>2</sub> = (1x, 1y)</em>, in this case the response is biased towards <em>R<sub>n</sub></em> which is connected to <em>A<sub>1</sub></em> due to increased number of x connections.]</li>
+            </ul>
+
+            <h2>Important Characteristics of <em>P<sub>a</sub></em> and <em>P<sub>c</sub></em>:</h2>
+            <ul>
+                <li>Value of <em>P<sub>a</sub></em> can be reduced in magnitude by either <em>increasing</em> the <em>threshold</em> (θ) or by <em>increasing</em> the number of inhibitory connections (aka <strong>y</strong> value). <strong>Refer Fig 4(a)</strong></li>
+                <li>When x &gt;&gt; y, underfitting takes place where <em>P<sub>a</sub></em> is always close to unity as x takes the dominance in the threshold equation.</li>
+                <li>When y &gt;&gt; x, overfitting takes place where <em>P<sub>a</sub></em> is mostly close to zero (0) as inhibitory effect takes dominance and model acts more specific to the response it provides.</li>
+                <li>When x == y, it may not overfit or underfit but performs the best given equal number of stimuli for all the responses to train on.</li>
+                <li>*The modern terminology of fitting is used to help understand the characteristics of the system while the author may not have explicitly mentioned in his original work.</li>
+            </ul>
+            <p><img src="./assets/Fig4.png" alt="Figure 4"></p>
+            <p><img src="./assets/Fig5.png" alt="Figure 5"></p>
+
+            <h2>Analysis of the Postdominant phase:</h2>
+            <p>There exists two types of system to calculate the dominant response in the postdominant phase.</p>
+            <ul>
+                <li><strong>Sum Discriminative System (Σ)</strong> : The response whose input put in the highest net value (V) dominates.</li>
+                <li><strong>Mean Discriminative System (μ)</strong> : The response with the highest mean value (<em>V / n active A-units</em>) dominates.</li>
+                <li>The mean discriminative system is considered better in most cases as it reduces bias in the training phase consisting of imbalanced data set.</li>
+                <li><em>This acts like the activation part.</em></li>
+            </ul>
+            <p><img src="./assets/dominant_response.svg" alt="Example"></p>
+
+            <h3>Performance analysis in the postdominant phase:</h3>
+            <ul>
+                <li><p><em>P<sub>r</sub></em> (Probability of correct choice of response): <strong>Recall</strong></p>
+                <ul>
+                    <li>The recall provides information of whether the system can identify the exact same stimuli again. Just like memorizing the same pattern.</li>
+                </ul>
+                </li>
+                <li><p><em>P<sub>g</sub></em> (Probability of correct generalization): <strong>Generalization</strong></p>
+                <ul>
+                    <li>It measures the ability of the system to learn the patterns of a given class such that the system chooses the correct response given a new stimuli it has never seen before (i.e, not identical).</li>
+                    <li><strong>Condition for generalization</strong> <em>P<sub>11</sub> &gt; P<sub>a</sub> &gt; P<sub>12</sub></em>. (i.e, <em>intraclass</em> activation should be greater than <em>interclass</em> activation for <em>generalized learning</em>).</li>
+                </ul>
+                </li>
+                <li><p>The author investigated and found out a single equation which gives a close approximation of <em>P<sub>r</sub></em> and <em>P<sub>g</sub></em>, if appropriate constants are passed in it.</p></li>
+                <li><p><em>P = P(N<sub>a<sub>r</sub></sub> &gt; 0) · Φ(Z)</em>   (4)</p></li>
+                <li><p>Where,</p>
+                <ul>
+                    <li><em>Φ(Z)</em> = Normal curve integral from -∞ to Z (In other words: cumulative normal distribution function of Z)</li>
+                    <li><em>P(N<sub>a<sub>r</sub></sub> &gt; 0)</em> = Probability that, at least one of the A unit is active in the dominant source set. (higher the probability, higher the generalization and recall)</li>
+                    <li><em>Z = (c<sub>1</sub> n<sub>s<sub>r</sub></sub> + c<sub>2</sub>) / √(c<sub>3</sub> n<sub>s<sub>r</sub></sub><sup>2</sup> + c<sub>4</sub> n<sub>s<sub>r</sub></sub>)</em></li>
+                    <li>where the constants <em>(c<sub>1</sub>, c<sub>2</sub>, c<sub>3</sub>, c<sub>4</sub>)</em> is chosen through extensive analysis by the author for each system. (Refer the research paper). And by differing the constants we get the value approximates for <em>P<sub>r</sub></em> and <em>P<sub>g</sub></em>.</li>
+                </ul>
+                </li>
+            </ul>
+
+            <h2>Environment of Learning:</h2>
+            <ul>
+                <li><p><strong>Ideal Environment</strong>: This was the environment used for initial performance measure by the author and the following assumptions are made.</p>
+                <ul>
+                    <li>Each stimuli is unique and random.</li>
+                    <li>There is no intrinsic similarity between the stimuli of one another (just like randomly illuminated spots on the retina).</li>
+                    <li><em>Arbitrary Responses:</em> The responses are forced during the learning phase. For example the first 100 stimuli is considered R1 and the next 100 is considered as R2.</li>
+                    <li>The <em>P<sub>r</sub></em> Probability of recall plays a major role in this environment to memorize random stimuli as there are no patterns to relate between them.</li>
+                </ul>
+                </li>
+                <li><p><strong>Differential Environment</strong>: It mimics real world scenarios. It provides the <em>true performance measure</em>.</p>
+                <ul>
+                    <li>It has distinguishable classes to respond like square or circle instead of random points on the retina.</li>
+                    <li><em>Similarity in Stimuli</em>: Since the stimuli are similar to one another (like squares of different shapes (curved, straight) and sizes), they represent the same class whatsoever.</li>
+                    <li>The <em>P<sub>g</sub></em> Probability of generalization plays a major role as it defines the systems capability of learning patterns instead of memorizing.</li>
+                </ul>
+                </li>
+            </ul>
+
+            <h2>Analysis on the Environments:</h2>
+            <h3>In an Ideal Environment: (Each stimuli is random, no patterns)</h3>
+            <ul>
+                <li><p>It is interesting in this stage that, as the <em>number of stimuli attached to the responses <em>(n<sub>s<sub>r</sub></sub>)</em></em> (aka the count of the training data) increases the Probability of recall decreases and approaches a fixed asymptote at <em>P<sub>r</sub></em> = 0.5.</p></li>
+                <li><p>This indicates that, the ability to memorize decreases as it tires to memorize increasing number of random stimuli patterns. and <em>P<sub>r</sub></em> = 0.5 = Inability to remember the pattern seen before</p>
+                <ul>
+                    <li>You may ask why the asymptote at <em>P<sub>r</sub></em> = 0.5. Remember the equation with the Normal Distribution where Z is the input. Z can have a minimum value of 0 for which the cumulative normal distribution value is 0.5 and so the specific asymptote. Test it out yourself.</li>
+                </ul>
+                </li>
+                <li><p>The below <em>graph</em> shows the learning curve of the system.</p></li>
+            </ul>
+            <p><img src="./assets/Fig10.png" alt="Figure 10"></p>
+
+            <h3>In a Differentiable Environment: (Each class of stimuli has similarities)</h3>
+            <ul>
+                <li>Unlike an Ideal Environment, the learning increases as the number of stimuli attached to the responses <em>(n<sub>s<sub>r</sub></sub>)</em> (number of training data) increases and the <em>P<sub>g</sub></em> Probability of generalization increases and in most cases approaches unity if the training data is large enough.</li>
+                <li>In other words, The system becomes a generalized learning machine, as it learns patterns instead of memorizing each stimuli.</li>
+            </ul>
+            <p><img src="./assets/Fig11.png" alt="Figure 11"></p>
+
+            <h2>Increasing the number of responses <em>(N<sub>r</sub>)</em>, slows down learning?</h2>
+            <ul>
+                <li><p>As the number of responses <em>(N<sub>r</sub>)</em> increases, the performance of the system decreases as the responses are <em>mutually exclusive</em>.</p></li>
+                <li><p>To overcome this, F. Rosenblatt suggests that we <strong>binary coding</strong> for the responses and make them <em>mutually inclusive</em>.</p>
+                <ul>
+                    <li>i.e, Each response has two outcomes either 1 or 0. and system can have multiple responses on at the same time.</li>
+                    <li>Example: R1 -&gt; tall or not tall, R2 -&gt; fat or not fat, R3 -&gt; straight or curved</li>
+                </ul>
+                </li>
+                <li><p>By this method, 100 classes of stimuli can be represented by 7 responses as 2^7 = 128 (128 possible combination of stimuli classes).</p></li>
+            </ul>
+
+            <h2>Monovalent Vs Bivalent systems:</h2>
+            <ul>
+                <li><p>Monovalent systems only have positive reinforcement (like adding <em>+ΔV</em> to the active A units in the source set while not punishing system for inactive A units.</p></li>
+                <li><p>Bivalent systems uses positive and negative reinforcement to essentially reward the active A units with <em>+ΔV</em> and punish the inactive A units with <em>-ΔV</em>.</p>
+                <ul>
+                    <li>The use of bivalent systems has been shown reduced bias towards a particular response by quantitative analysis.</li>
+                    <li>Also such a bivalent system produces a more plausible appearance of a biological system (mimic of the brain nerves) which has been the goal of this research.</li>
+                </ul>
+                </li>
+            </ul>
+
+            <h2>Improved Perceptron and Spontaneous Organization:</h2>
+            <ul>
+                <li><p>The perceptron discussed till now don't have temporal pattern recognition, which mean it can't process sequence of data/stimuli.</p></li>
+                <li><p>But if we introduce temporal trace of memory, then the system has the ability of process the current stimuli based the previous sequence of stimuli. (i.e, it can be use to analyze voice sequence, prediction of the next sentence or word given an input sentence -&gt; this was a goal most theorist were trying to achieve during that time and now it resembles the modern Recurrent Neural Network (RNNs) and LLMs).</p></li>
+                <li><p>Also by arranging the A units or origin points in a particular order improves the perceptron ability to identify and learn contour patterns (like face shapes, etc...).</p></li>
+                <li><p>Introduction of a <em>decay variable</em> makes a striking new property emerge, the perceptron gains the ability to classify between two <em>dissimilar classes</em> (like square or circle) on it own <em>(unsupervised learning behavior)</em>. That is, it doesn't need the response labels during the learning phase.</p></li>
+                <li><p>The above mentioned characteristics/features was analyzed on a simulation of a perceptron in IBM 704 computer at Cornell Aeronautical Laboratory around the 1950s which includes F. Rosenblatt personal work before he joined Cornell Labs (around the 1940s-1950s).</p></li>
+                <li><p><em>Limitation of the Perceptron:</em> Perceptron was good for classification of simple patterns like square or circle but it doesn't have the capability to perform classification on a task <em>(like find the pattern on the left to the square)</em>. F. Rosenblatt stated this limitation as follows,</p>
+                <blockquote><p>"Statistical separability alone does not provide a sufficient basis for higher order abstraction. Some system more advanced in principle than the perceptron, seems to be required at this point."</p></blockquote>
+                </li>
+            </ul>
+
+            <h2>Summary and Conclusions:</h2>
+            <p>The main conclusion of the theoretical study of perceptron is as follows: <em>*(minimized version)</em></p>
+            <p><strong>Note:</strong> <strong>IOW</strong> <em>means</em> <strong>In Other Words</strong></p>
+            <ol>
+                <li><p>In an environment of random stimuli, a system consisting of randomly connected units can learn to associate specific responses to specific stimuli.</p>
+                <ul>
+                    <li><strong>IOW:</strong> It can learn to strengthen specific connections stronger for specific stimuli, even for a random stimuli of classes.</li>
+                </ul>
+                </li>
+                <li><p>In such an "Ideal environment," the probability of a correct response diminishes towards its original random level as the number of stimuli learned increases.</p>
+                <ul>
+                    <li><strong>IOW:</strong> In an Ideal environment, the system cannot memorize more and more random pattern, so the learning curve diminishes as the number of random stimuli fed increases.</li>
+                </ul>
+                </li>
+                <li><p>In such an Ideal environment, no basis of generalization exists.</p>
+                <ul>
+                    <li><strong>IOW:</strong> Generalization (the ability to learn patterns instead of memorizing each stimuli) doesn't exist in such an ideal environment.</li>
+                </ul>
+                </li>
+                <li><p>In a "differentiated environment," where each response is associated to a distinct class of mutually correlated, or "similar" stimuli, the probability that a learned association of some specific stimulus will be correctly retained, typically approaches a better-than-chance asymptote as the number of the stimuli learned by the system increases. This asymptote can be made arbitrarily close to unity by increasing the number of association cells in the system.</p>
+                <ul>
+                    <li><strong>IOW:</strong> In an differentiated system, the stimuli are differentiable and not random (i.e, square or circle). And provided such system, the perceptron gains the ability to remember patterns as the number of stimuli <em>(training data)</em> increases. Also by increasing the number association cells (aka A units) (increase in the number of neurons) we can achieve 100% accuracy on classification (arbitrarily).</li>
+                </ul>
+                </li>
+                <li><p>In the differentiated environment, the probability that a stimulus which has not been seen before will be correctly recognized and associated to its appropriate class (the probability of correct generalization) approaches the same asymptote as the probability of a correct response to a previously reinforced stimulus. This asymptote will be better than chance if the inequality <em>P<sub>c<sub>12</sub></sub> &lt; P<sub>a</sub> &lt; P<sub>c<sub>11</sub></sub></em> is met, for the stimulus classes in question.</p>
+                <ul>
+                    <li><strong>IOW:</strong> The condition <em>P<sub>11</sub> &gt; P<sub>a</sub> &gt; P<sub>12</sub></em> is the <em>condition for generalization</em>. This statement tells that in a differentiable environment, the perceptron always learn to distinguish between stimuli with a better-than-chance probability as the number of stimuli <em>(training data)</em> increases.</li>
+                </ul>
+                </li>
+                <li><p>The <em>performance</em> of the system can be improved by the use of a <strong><em>contour-sensitive projection area</em></strong>, and by the use of a <strong><em>binary response system</em></strong>, in which each response corresponds to some independent feature or attribute of the stimulus.</p>
+                <ul>
+                    <li><strong>IOW:</strong> The performance of the perceptron can be increased by introducing better arrangement of association units to recognize contour patterns and by using binary coding of responses to reduce the number of response units.</li>
+                </ul>
+                </li>
+                <li><p>Trial-and-error learning is possible in bivalent reinforcement systems.</p>
+                <ul>
+                    <li><strong>IOW:</strong> The above statement is simple enough to understand!!!</li>
+                </ul>
+                </li>
+                <li><p>Temporal organizations of both stimulus patterns and responses can be learned by a system which uses only an extension of the original principles of statistical separability, without introducing any major complications in the organization of the system.</p>
+                <ul>
+                    <li><strong>IOW:</strong> Temporal pattern recognition <em>(sequence analysis of patterns)</em> can be introduced in the statistical separability machine <em>(the perceptron)</em> without any major modifications to the system.</li>
+                </ul>
+                </li>
+                <li><p>The memory of the perceptron is distributed, in the sense that any association may make use of a large proportion of the cells in the system, and the removal of a portion of the association system would not have an appreciable effect on the performance of any one discrimination or association, but would begin to show up as a general deficit in all learned associations.</p>
+                <ul>
+                    <li><strong>IOW:</strong> The memory <em>(aka the weights of the connection V)</em> is distributed across all the A units in the association area. If we remove some of it, then the whole system loses some ability to recognize the pattern classes to a slight extent, but re-adjust itself to classify patterns again with better accuracy.</li>
+                </ul>
+                </li>
+                <li><p>Simple cognitive sets, selective recall, and spontaneous recognition of the classes present in a given environment are possible. The recognition of relationships in space and time, however, seems to represent a limit to the perceptron's ability to form cognitive abstractions.</p>
+                <ul>
+                    <li><strong>IOW:</strong> The perceptron model discussed above is capable of classification but still not capable of selective recall <em>(like recognizing our friend after a year on a beach just by seeing the face)</em>. This presents a limitation or need for some higher order mechanism for the perceptron to form cognitive abstraction.</li>
+                </ul>
+                </li>
+            </ol>
+
+            <p>End Note by F. Rosenblatt:</p>
+            <blockquote><p>"By the study of systems such as the perceptron, it is hoped that those fundamental laws of organization which are common to all information handling systems, machines and men included, may eventually be understood."</p></blockquote>
+
+            <div class="post-footer">
+                <p>← <a href="../../../index.html">back to blog index</a> &nbsp;|&nbsp;
+                <a href="../../../index.html">home</a> &nbsp;|&nbsp;
+                <a href="mailto:kishorjsk2006@gmail.com">email</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

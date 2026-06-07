@@ -1,9 +1,26 @@
-/* ============================================================
-   FONTS
-   Iosevka Etoile  → body / headings  (self-hosted)
-   IBM Plex Mono   → nav / UI / code  (self-hosted)
-   ============================================================ */
+@font-face {
+    font-family: 'Inter';
+    src: url('./fonts/Inter_18pt-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
 
+@font-face {
+    font-family: 'Inter';
+    src: url('./fonts/Inter_18pt-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('./fonts/Inter_18pt-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
 @font-face {
     font-family:  'Iosevka Etoile';
     src:          url('./fonts/IosevkaEtoile-Regular.woff2') format('woff2');
@@ -27,22 +44,15 @@
 }
 
 @font-face {
-    font-family:  'IBM Plex Mono';
-    src:          url('./fonts/IBMPlexMono-Regular.woff2') format('woff2');
+    font-family:  'Hermit';
+    src:          url('./fonts/Hermit-Regular.otf') format('opentype');
     font-weight:  400;
     font-style:   normal;
     font-display: swap;
 }
 @font-face {
-    font-family:  'IBM Plex Mono';
-    src:          url('./fonts/IBMPlexMono-Italic.woff2') format('woff2');
-    font-weight:  400;
-    font-style:   italic;
-    font-display: swap;
-}
-@font-face {
-    font-family:  'IBM Plex Mono';
-    src:          url('./fonts/IBMPlexMono-Bold.woff2.woff2') format('woff2');
+    font-family:  'Hermit';
+    src:          url('./fonts/Hermit-Bold.otf') format('opentype');
     font-weight:  700;
     font-style:   normal;
     font-display: swap;
@@ -50,368 +60,357 @@
 
 /* ============================================================
    THEME TOKENS
-   Toggle via JS:
-     document.documentElement.setAttribute('data-theme', 'dark')
-     document.documentElement.setAttribute('data-theme', 'light')
    ============================================================ */
 
-:root,
-[data-theme="light"] {
-    --bg-color:        #f3f2ee;
-    --text-color:      #1a1a1a;
-    --border-color:    #1a1a1a;
-    --highlight-color: #333333;
-    --muted-color:     #666666;
+:root {
+    --bg-color:        #000000;
+    --text-primary:    #e8e6e1;
+    --text-secondary:  #a8a69c;
+    --border-subtle:   #2a2a2a;
+    --accent:          #a8c0ff;
+    --accent-hover:    #c0d4ff;
+    --muted-accent:    #5b6e8c;
 
     --font-body: 'Iosevka Etoile', 'Georgia', serif;
-    --font-ui:   'IBM Plex Mono', 'Courier New', monospace;
+    --font-ui:   'Hermit', 'Courier New', monospace;
 }
 
-[data-theme="dark"] {
-    --bg-color:        #0d0d0d;
-    --text-color:      #c0baa5;
-    --border-color:    #c0baa5;
-    --highlight-color: #c0baa5;
-    --muted-color:     #7a7265;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-
-/* ============================================================
-   GLOBAL RESET & BASE
-   ============================================================ */
 
 ::selection {
-    background: var(--highlight-color);
-    color:      var(--bg-color);
+    background: var(--accent);
+    color:      #000000;
 }
 
 ::-moz-selection {
-    background: var(--highlight-color);
-    color:      var(--bg-color);
+    background: var(--accent);
+    color:      #000000;
 }
-
 
 body {
     background:  var(--bg-color);
-    color:       var(--text-color);
+    color:       var(--text-primary);
     font-family: var(--font-body);
-    font-size:   15px;
-    line-height: 1.5;
-    padding:     20px;
+    font-size:   16px;
+    line-height: 1.6;
+    padding:     24px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
 }
 
 p {
-    line-height: 1.45;
-    margin:      0 0 0.75em;
+    line-height: 1.6;
+    margin:      0 0 1em;
 }
 
 a {
-    color:           var(--text-color);
+    color:           var(--accent);
     font-family:     var(--font-ui);
-    font-size:       0.88em;
-    text-decoration: underline wavy;
-    transition:      opacity 0.15s ease;
+    font-size:       0.9em;
+    text-decoration: none;
+    border-bottom:   1px solid transparent;
+    transition:      border-color 0.2s ease, color 0.2s ease;
 }
 
 a:hover {
-    opacity: 0.6;
+    color:        var(--accent-hover);
+    border-bottom-color: var(--accent);
 }
-
-
-/* ============================================================
-   TYPOGRAPHY
-   ============================================================ */
 
 h1 {
     font-family:    var(--font-body);
-    font-size:      20px;
-    font-style:     normal;
-    font-weight:    400;
+    font-size:      1.4rem;
+    font-weight:    500;
     letter-spacing: -0.01em;
-    margin-bottom:  4px;
+    margin-bottom:  0.75rem;
     margin-top:     0;
+    color:          var(--text-primary);
 }
 
 h2 {
     font-family:   var(--font-body);
-    font-size:     14px;
+    font-size:     1rem;
     font-style:    italic;
     font-weight:   400;
-    /* margin-bottom: 16px; */
-    /* margin-top:    0px; */
+    color:         var(--text-secondary);
+    margin:        0.25rem 0 0.5rem;
 }
-
-h3 {
-    font-family: var(--font-ui);
-    font-size:   14px;
-    font-weight: 500;
-    margin:      0;
-}
-
-h4 {
-    font-family: var(--font-ui);
-    font-size:   13px;
-    font-weight: 400;
-    margin:      0.5em 0 0.25em;
-}
-
-
-/* ============================================================
-   LAYOUT
-   ============================================================ */
 
 .container {
     margin:    0 auto;
-    max-width: 914px;
+    max-width: 980px;
 }
 
 .ruler {
     border:        none;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-subtle);
     display:       block;
-    margin:        0 0 24px 0;
+    margin:        1.5rem 0 1.8rem;
     width:         100%;
 }
 
-
 /* ============================================================
-   NAV
+   NAVIGATION — Hermit Bold
    ============================================================ */
 
 .nav-top {
     align-items:     center;
-    border-bottom:   1px solid var(--border-color);
+    border-bottom:   1px solid var(--border-subtle);
     display:         flex;
-    gap:             24px;
-    justify-content: center;
-    padding-bottom:  16px;
-    user-select:     none;
+    gap:             2rem;
+    justify-content: flex-start;
+    padding-bottom:  1rem;
+    margin-bottom:   0.5rem;
 }
 
 .nav-top a {
-    border-bottom:   2px solid transparent;
-    color:           var(--text-color);
+    color:           var(--text-secondary);
     font-family:     var(--font-ui);
-    font-size:       14px;
-    font-weight:     500;
-    letter-spacing:  0.05em;
+    font-weight:     700;          /* Hermit-Bold */
+    font-size:       0.85rem;
+    letter-spacing:  0.03em;
     text-decoration: none;
     text-transform:  lowercase;
-    transition:      border-color 0.15s ease;
+    border-bottom:   1px solid transparent;
+    transition:      color 0.2s, border-color 0.2s;
 }
 
-.nav-top a:hover {
-    border-bottom-color: var(--border-color);
-    opacity:             1;
+.nav-top a:hover,
+.nav-top a.active {
+    color:            var(--text-primary);
+    border-bottom-color: var(--accent);
 }
-
-#theme-toggle {
-    background:  none;
-    border:      none;
-    color:       var(--text-color);
-    cursor:      pointer;
-    font-family: var(--font-ui);
-    font-size:   16px;
-    line-height: 1;
-    margin-left: auto;
-    padding:     0;
-    transition:  opacity 0.15s ease;
-}
-
-#theme-toggle:hover {
-    opacity: 0.5;
-}
-
-@media (max-width: 600px) {
-    .nav-top {
-        flex-direction: column;
-        gap:            8px;
-    }
-
-    #theme-toggle {
-        margin-left: 0;
-    }
-}
-
 
 /* ============================================================
-   HEADER / INFO BLOCK
+   HEADER — name uses Hermit Regular
    ============================================================ */
 
 .info {
-    padding: 20px 0 8px;
+    padding: 1rem 0 0.5rem;
 }
 
 .heading {
     align-items: center;
     display:     flex;
-    gap:         16px;
+    flex-wrap:   wrap;
+    gap:         1rem;
+    margin-bottom: 0.5rem;
 }
 
-/* The _> kshrs name uses UI font — keeps the terminal-prompt feel */
 .heading h1 {
     font-family:    var(--font-ui);
-    font-size:      16px
-    font-weight:    500;
-    letter-spacing: 0.02em;
-    padding-top:    0;
+    font-weight:    400;          /* Hermit-Regular */
+    font-size:      1.4rem;
+    letter-spacing: 0.01em;
     margin:         0;
+    color:          var(--text-primary);
 }
 
-.heading img {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
+.prompt-cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.2em;
+    background-color: var(--accent);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+}
 
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.avatar {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border-subtle);
 }
 
 .info-socials ul {
     display:         flex;
     flex-wrap:       wrap;
-    gap:             12px;
+    gap:             1rem;
     list-style-type: none;
     padding:         0;
     margin:          0;
 }
 
 .info-socials ul a {
-    border-bottom:   1px solid var(--border-color);
-    color:           var(--text-color);
-    display:         inline-block;
-    font-size:       inherit;
-    line-height:     1;
-    opacity:         1;
-    padding-bottom:  3px;
-    text-decoration: none;
-    transition:      border-bottom-width 0.1s ease, opacity 0.1s ease;
+    border-bottom: none;
+    color:          var(--text-secondary);
+    display:        inline-flex;
+    align-items:    center;
+    opacity:        0.7;
+    transition:     opacity 0.2s, color 0.2s;
 }
 
 .info-socials ul a:hover {
-    border-bottom-width: 2px;
-    opacity:             0.6;
+    opacity: 1;
+    color:   var(--accent);
+    border-bottom: none;
+}
+
+.tagline {
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
 }
 
 /* ============================================================
-   BIO SECTION
+   BIO & OTHER SECTIONS
    ============================================================ */
 
 .bio {
-    margin-top: 4px;
+    margin: 0.5rem 0 0;
+}
+
+.bio p {
+    margin-bottom: 1rem;
 }
 
 .bio ul {
-    padding-left: 1.25em;
+    padding-left: 1.5rem;
+    margin: 0.75rem 0 1rem;
 }
 
 .bio ul li {
-    margin-bottom: 0.35em;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
 }
 
-
-/* ============================================================
-   SKILLS GRID
-   ============================================================ */
-
-.grid {
-    display:        flex;
-    flex-direction: column;
-    gap:            8px;
-    padding:        4px 0 12px;
+.bio strong, .bio b {
+    color: var(--accent);
+    font-weight: 500;
 }
-
-.grid h1 {
-    margin-bottom: 8px;
-}
-
-.grid .row {
-    display:     flex;
-    font-family: var(--font-ui);
-    font-size:   14px;
-    gap:         24px;
-}
-
-.grid .col:first-child {
-    flex-shrink: 0;
-    min-width:   80px;
-    opacity:     0.55;
-}
-
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-
-.footer {
-    font-family: var(--font-ui);
-    font-size:   12px;
-    margin-top:  auto;
-    opacity:     0.45;
-}
-
-
-/* ============================================================
-   BLOG PAGE
-   ============================================================ */
-
-.box {
-    display:        flex;
-    flex-direction: column;
-    margin-bottom:  16px;
-}
-
-.box .main {
-    display:        flex;
-    flex-direction: row;
-    gap:            12px;
-    padding:        4px 0;
-}
-
-.box .main .title {
-    font-family: var(--font-body);
-    font-size:   15px;
-    font-weight: 400;
-}
-
-.box .desc {
-    color:       var(--muted-color);
-    font-family: var(--font-ui);
-    font-size:   13px;
-    padding:     2px 0;
-}
-
-/* ============================================================
-   PROJECTS & PAPERS SECTIONS
-   ============================================================ */
 
 .section-grid {
     display:        flex;
     flex-direction: column;
-    gap:            8px;
-    padding:        4px 0 12px;
+    gap:            0.75rem;
+    padding:        0.25rem 0 0.5rem;
 }
 
 .section-grid h1 {
-    margin-bottom: 8px;
+    margin-bottom: 0.25rem;
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
 }
 
 .section-row {
     display:     flex;
     font-family: var(--font-ui);
-    font-size:   14px;
-    gap:         24px;
+    font-size:   0.85rem;
+    gap:         1.8rem;
     align-items: baseline;
+    flex-wrap:   wrap;
 }
 
 .section-name {
     flex-shrink: 0;
-    min-width:   180px;
+    min-width:   160px;
 }
 
 .section-name a {
-    text-decoration: underline;
+    font-family: var(--font-ui);
+    font-weight: 500;
+    color:       var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--muted-accent);
+}
+
+.section-name a:hover {
+    color: var(--accent-hover);
+    border-bottom-color: var(--accent);
 }
 
 .section-desc {
-    color:   var(--text-color);
-    opacity: 0.85;
+    color:   var(--text-secondary);
+    line-height: 1.5;
+}
+
+.paper-author {
+    color: var(--text-primary);
+    opacity: 0.8;
+    font-size: 0.8rem;
+}
+
+.grid {
+    display:        flex;
+    flex-direction: column;
+    gap:            0.9rem;
+    padding:        0.25rem 0 0.5rem;
+}
+
+.grid h1 {
+    margin-bottom: 0.25rem;
+}
+
+.row {
+    display:     flex;
+    font-family: var(--font-ui);
+    font-size:   0.85rem;
+    gap:         1.8rem;
+    flex-wrap:   wrap;
+}
+
+.col:first-child {
+    flex-shrink: 0;
+    min-width:   90px;
+    color:       var(--text-secondary);
+}
+
+.col:last-child span {
+    color: var(--text-primary);
+    letter-spacing: 0.01em;
+}
+
+.contact-footnote {
+    margin: 1.5rem 0 2rem;
+    padding: 1rem 0 0.5rem;
+    border-top: 1px solid var(--border-subtle);
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.contact-footnote a {
+    font-family: var(--font-ui);
+    color: var(--accent);
+}
+
+.contact-footnote strong {
+    color: var(--text-primary);
+}
+
+@media (max-width: 680px) {
+    body {
+        padding: 16px;
+    }
+    .section-row {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    .section-name {
+        min-width: auto;
+    }
+    .row {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    .col:first-child {
+        min-width: auto;
+    }
+    .nav-top {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+    }
 }

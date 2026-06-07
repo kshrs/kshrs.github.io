@@ -1,90 +1,98 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kishor's Blog">
-    <meta name="author" content="Kishor">
-
-    <title>blogs | kshrs</title>
-
+    <meta name="description" content="Kishor's blog – ML, systems, programming notes">
+    <title>kshrs · blog</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/moon.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link rel="stylesheet" href="../style.css">
+    <style>
+        /* additional list styling */
+        .blog-list {
+            margin-top: 1rem;
+        }
+        .blog-entry {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-family: var(--font-ui);
+            font-size: 0.9rem;
+        }
+        .blog-entry a {
+            font-size: 1rem;
+            font-weight: 500;
+            border-bottom: none;
+        }
+        .blog-date {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        @media (max-width: 600px) {
+            .blog-entry {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
     <div class="container">
-
-        <!-- NAV -->
         <nav class="nav-top">
-            <a href="../index.html">home</a>
-            <a href="./index.html">_> blogs</a>
-            <button id="theme-toggle" aria-label="Toggle theme">◐</button>
+            <a href="../index.html">~/home</a>
+            <a href="./index.html" class="active">~/blogs</a>
+            <a href="../assets/Kishor_S_Resume_General.pdf" target="_blank">~/resume.pdf</a>
         </nav>
 
-        <!-- HEADER -->
-        <header>
-            <h1>blogs</h1>
+        <header class="info">
+            <div class="heading">
+                <h1>blogs<span class="prompt-cursor"></span></h1>
+                <img src="../assets/moon.jpg" alt="moon" class="avatar">
+            </div>
+            <h2 class="tagline">notes · research · code</h2>
         </header>
-
-        <!-- BLOG LIST -->
-        <div class="list">
-
-            <div class="box">
-                <div class="main">
-                    <div class="title">
-                        <span>•</span>
-                        <a href="./perceptron/index.html">The breakdown on "The Perceptron"</a>
-                    </div>
-                </div>
-                <div class="desc">
-                    Personal work on understanding <em>the perceptron</em> from the original
-                    research paper by F. Rosenblatt from 1958.
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="main">
-                    <div class="title">
-                        <span>•</span>
-                        <a href="./091225.html">The start of a new habit - blogging</a>
-                    </div>
-                </div>
-                <div class="desc">
-                    I never thought I will be doing this. Let us see how it goes,
-                    <em>time</em> is the answer.
-                </div>
-            </div>
-
-        </div>
 
         <span class="ruler"></span>
 
+        <div id="blog-list-container" class="blog-list">
+            <p>loading entries...</p>
+        </div>
+
+
+        <div class="contact-footnote">
+            <p>← <a href="../index.html">home</a> &nbsp;|&nbsp; <a href="mailto:kishorjsk2006@gmail.com">email</a></p>
+        </div>
     </div>
 
     <script>
-        const THEME_KEY = 'theme';
-        const LIGHT     = 'light';
-        const DARK      = 'dark';
-
-        const root   = document.documentElement;
-        const toggle = document.getElementById('theme-toggle');
-
-        const saved = localStorage.getItem(THEME_KEY) ?? LIGHT;
-        root.setAttribute('data-theme', saved);
-
-        toggle.addEventListener('click', () => {
-            const current = root.getAttribute('data-theme');
-            const next    = current === LIGHT ? DARK : LIGHT;
-            root.setAttribute('data-theme', next);
-            localStorage.setItem(THEME_KEY, next);
-        });
+        fetch('./blogs.json')
+            .then(res => res.json())
+            .then(blogs => {
+                const container = document.getElementById('blog-list-container');
+                container.innerHTML = '';
+                if (!blogs.length) {
+                    container.innerHTML = '<p>no posts yet — check back soon.</p>';
+                    return;
+                }
+                // sort by date descending (newest first)
+                blogs.sort((a,b) => new Date(b.date) - new Date(a.date));
+                blogs.forEach(blog => {
+                    const entry = document.createElement('div');
+                    entry.className = 'blog-entry';
+                    entry.innerHTML = `
+                        <div><a href="${blog.file}">${blog.title}</a></div>
+                        <div class="blog-date">${blog.date}</div>
+                    `;
+                    container.appendChild(entry);
+                });
+            })
+            .catch(err => {
+                document.getElementById('blog-list-container').innerHTML = '<p>could not load blog index.</p>';
+                console.error(err);
+            });
     </script>
-
 </body>
 </html>

@@ -63,9 +63,10 @@
 
         <div class="bio">
             <h1>✦about</h1>
-	    <p>I'm <strong>Kishor</strong> — an undergrad student aspiring to become a machine learning researcher & software engineer. I learn and build stuff to be efficient with good mathematical and systems intuition.</p>
+	    <p>I'm <strong>Kishor</strong> — an undergrad student (B.Tech IT, AI Honours @ KCT) aspiring to become a machine learning researcher & systems engineer. I learn and build things with mathematical depth and systems-level intuition.</p>
             <ul>
-                <li>Currently deep-diving into <b>machine learning (CS229),</b> and generic software development.</li>
+                <li>Research & focus areas: <b>foundation vision models, agentic AI / RAG, and time-series modeling</b>.</li>
+                <li>Experienced with PyTorch, Linux internals, multi-agent pipelines, and distributed sensor streams.</li>
                 <li>Open to <b>research collaborations, ML engineering roles, and systems projects.</b></li>
             </ul>
             <p><a href="./assets/Kishor_S_Resume_General.pdf" target="_blank">View resume (PDF)</a> &nbsp;|&nbsp; <a href="mailto:kishorjsk2006@gmail.com">kishorjsk2006@gmail.com</a> &nbsp;|&nbsp; <i>“vim, tmux and void-linux”</i></p>
@@ -101,20 +102,24 @@
     <script>
         const PORTFOLIO = {
             projects: [
-                { name: "shush", desc: "simple shell in C — process execution, builtins, job control. Unix fundamentals.", link: "https://github.com/kshrs/shush" },
-                { name: "educator", desc: "curriculum curator + intelligent grader using research‑based tasks for self‑study.", link: "https://github.com/kshrs/educator" },
-                { name: "lenet5-visualizer", desc: "digit recognizer (LeNet5) + interactive frontend to visualize conv activations.", link: "https://github.com/kshrs/lenet5-visualizer" },
+                { name: "sem-sr", desc: "satellite imagery 4× super-resolution fine-tuning NASA/IBM Prithvi-EO-2.0-300M with UNet diffusion guidance (SIH 2026 Space Tech).", link: "https://github.com/kshrs/sem-sr" },
+                { name: "sec_audit", desc: "multi-agent NLP & hybrid retrieval (dense embeddings + BM25 via RRF) with LangGraph workflows and AST safety audits.", link: "https://github.com/kshrs/sec_audit" },
+                { name: "shush", desc: "minimal Unix shell in C — process execution, builtins, job control, signals.", link: "https://github.com/kshrs/shush" },
+                { name: "lenet5-visualizer", desc: "digit recognizer (LeNet5) in PyTorch + interactive frontend visualizing convolutional layer activations.", link: "https://github.com/kshrs/lenet5-visualizer" },
+                { name: "educator", desc: "curriculum curator + intelligent grader using research‑based tasks for self‑study.", link: "https://github.com/kshrs/educator" }
             ],
             papers: [
+                { title: "Prithvi-EO-2.0", authors: "NASA & IBM, 2024", description: "geospatial foundation models for Earth observation — multi-temporal & multi-spectral representation learning.", link: "https://arxiv.org/abs/2412.02732" },
                 { title: "LogicDiff (MDLMs)", authors: "Shaik Aman, 2026", description: "separate classification head to improve reasoning beyond RL-based tuning.", link: "https://arxiv.org/pdf/2603.26771" },
-                { title: "LeNet5", authors: "Yann LeCun et al., 1998", description: "convolutional networks for handwritten digit recognition — pioneering CNN principles.", link: "http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf" },
-                { title: "Backpropagation", authors: "Hinton, Rumelhart, Williams, 1986", description: "learning representations by back-propagating errors, foundation of deep learning.", link: "https://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf" },
-                { title: "Attention Is All You Need", authors: "Vaswani et al., 2017", description: "transformer architecture — deep understanding of scaled dot-product attention.", link: "https://arxiv.org/abs/1706.03762" }
+                { title: "Attention Is All You Need", authors: "Vaswani et al., 2017", description: "transformer architecture — scaled dot-product attention and multi-head mechanisms.", link: "https://arxiv.org/abs/1706.03762" },
+                { title: "LeNet5", authors: "Yann LeCun et al., 1998", description: "convolutional networks for handwritten digit recognition — foundational CNN principles.", link: "http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf" },
+                { title: "Backpropagation", authors: "Hinton, Rumelhart, Williams, 1986", description: "learning representations by back-propagating errors, foundation of deep learning.", link: "https://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf" }
             ],
             skills: [
-                { category: "general", items: ["Python", "C", "C++(learning)"] },
-                { category: "ml", items: ["PyTorch", "Scikit-learn", "NumPy", "Pandas", "Matplotlib", "JAX (basics)"] },
-                { category: "tools & env", items: ["Vim", "Tmux", "Git", "Linux (Void)"] }
+                { category: "languages", items: ["Python", "C", "C++", "Rust", "SQL", "Bash"] },
+                { category: "ml & vision", items: ["PyTorch", "Foundation Models", "UNet Diffusion", "Scikit-Learn", "NumPy", "Pandas", "Time-Series"] },
+                { category: "nlp & agentic ai", items: ["Hybrid RAG (BM25 + Dense)", "LangGraph", "ChromaDB", "Sentence-Transformers"] },
+                { category: "systems & tools", items: ["Linux (Void)", "Vim", "Tmux", "Git", "Docker", "FastAPI"] }
             ]
         };
 

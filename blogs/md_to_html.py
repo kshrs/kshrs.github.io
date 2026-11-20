@@ -20,7 +20,7 @@ except ImportError:
 NAV_TEMPLATE = '''<nav class="nav-top">
     <a href="../index.html">~/home</a>
     <a href="./index.html" class="active">~/blogs</a>
-    <a href="../assets/Kishor_S_Resume_General.pdf" target="_blank">~/resume.pdf</a>
+    <a href="../assets/resume.pdf" target="_blank">~/resume.pdf</a>
 </nav>'''
 
 FOOTER_TEMPLATE = '''<div class="post-footer">
